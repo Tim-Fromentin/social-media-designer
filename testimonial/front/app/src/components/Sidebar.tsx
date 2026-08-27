@@ -3,7 +3,7 @@ import ButtonDropDown from "./ButtonDropdown";
 
 export function SideBar() {
   return (
-    <aside className="w-96 flex flex-col gap-4 py-8 px-6 bg-white border-r border-gray-100 min-h-screen shrink-0">
+    <aside className="w-96 flex flex-col gap-4 py-8 px-6 bg-white border-r border-gray-100 h-screen shrink-0 overflow-y-auto">
       <div>
         <h1 className="text-sm font-bold text-primary-950">
           Social Design Suite
