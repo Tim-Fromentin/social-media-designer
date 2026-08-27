@@ -1,10 +1,13 @@
-import { Star, Stars } from "lucide-react";
+import { Star } from "lucide-react";
+import ButtonDropDown from "./ButtonDropdown";
 
 export function SideBar() {
   return (
-    <aside className="w-96 flex flex-col gap-5 py-12.5 px-6.25">
+    <aside className="w-96 flex flex-col gap-4 py-8 px-6 bg-white border-r border-gray-100 min-h-screen shrink-0">
       <div>
-        <h1 className="text-sm text-primary-950">Social Design Suite</h1>
+        <h1 className="text-sm font-bold text-primary-950">
+          Social Design Suite
+        </h1>
         <p className="text-xs text-gray-500">Génerateur de testimonial</p>
       </div>
 
@@ -13,81 +16,71 @@ export function SideBar() {
       <div>
         <label
           htmlFor="name"
-          className="block text-sm font-medium text-primary-900"
+          className="block text-sm font-medium text-primary-900 mb-1.5"
         >
           Nom
         </label>
-        <div className="mt-2 mb-5">
-          <div className="flex items-center rounded-sm bg-white pl-3 outline-1 outline-gray-300 has-[input:focus-within]:-outline-offset-2">
-            <input
-              id="name"
-              type="text"
-              name="name"
-              placeholder="John Doe"
-              className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 focus:outline-none sm:text-sm/6"
-            />
-          </div>
+        <div className="flex items-center rounded-md bg-white border focus-within:border-primary-400 focus-within:ring-1 focus-within:ring-primary-400">
+          <input
+            id="name"
+            type="text"
+            name="name"
+            placeholder="John Doe"
+            className="w-full py-1.5 px-3 text-sm text-gray-900 focus:outline-none rounded-md"
+          />
         </div>
       </div>
 
       <div>
         <label
           htmlFor="avatar"
-          className="block text-sm font-medium text-primary-900"
+          className="block text-sm font-medium text-primary-900 mb-1.5"
         >
           Avatar
         </label>
-        <div className="mt-2 mb-5">
-          <div className="flex items-center rounded-sm bg-white pl-3 outline-1 outline-gray-300 has-[input:focus-within]:-outline-offset-2">
-            <input
-              id="avatar"
-              type="text"
-              name="avatar"
-              placeholder="img.com"
-              className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 focus:outline-none sm:text-sm/6"
-            />
-          </div>
+        <div className="flex items-center rounded-md bg-white border focus-within:border-primary-400 focus-within:ring-1 focus-within:ring-primary-400">
+          <input
+            id="avatar"
+            type="text"
+            name="avatar"
+            placeholder="img.com"
+            className="w-full py-1.5 px-3 text-sm text-gray-900 focus:outline-none rounded-md"
+          />
         </div>
       </div>
 
       <div>
-        <label
-          htmlFor="avatar"
-          className="block text-sm font-medium text-primary-900"
-        >
+        <span className="block text-sm font-medium text-primary-900 mb-1.5">
           Note
-        </label>
-        <div className="mt-2 mb-5">
-          <div className="flex items-center rounded-sm bg-white has-[input:focus-within]:-outline-offset-2 gap-0.75">
-            <Star className="text-amber-400" />
-            <Star />
-            <Star />
-            <Star />
-            <Star />
-          </div>
+        </span>
+        <div className="flex items-center gap-1 py-1 text-gray-300">
+          <Star className="w-5 h-5 fill-amber-400 text-amber-400 cursor-pointer" />
+          <Star className="w-5 h-5 cursor-pointer hover:text-amber-400" />
+          <Star className="w-5 h-5 cursor-pointer hover:text-amber-400" />
+          <Star className="w-5 h-5 cursor-pointer hover:text-amber-400" />
+          <Star className="w-5 h-5 cursor-pointer hover:text-amber-400" />
         </div>
       </div>
 
       <div>
         <label
           htmlFor="message"
-          className="block text-sm font-medium text-primary-900"
+          className="block text-sm font-medium text-primary-900 mb-1.5"
         >
           Message
         </label>
-        <div className="mt-2 mb-5">
-          <div className="flex items-center rounded-sm bg-white pl-3 outline-1 outline-gray-300 has-[input:focus-within]:-outline-offset-2">
-            <textarea
-              id="message"
-              name="message"
-              placeholder="img.com"
-              className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 focus:outline-none sm:text-sm/6"
-            />
-          </div>
+        <div className="flex items-center rounded-md bg-white border border-gray-300 focus-within:ring-1 focus-within:ring-primary-400">
+          <textarea
+            id="message"
+            name="message"
+            rows={3}
+            placeholder="img.com"
+            className="w-full py-1.5 px-3 text-sm text-gray-900 focus:outline-none rounded-md resize-none"
+          />
         </div>
       </div>
 
-      <button>Export</button>
+      <ButtonDropDown />
     </aside>
   );
 }
