@@ -1,4 +1,11 @@
-export function Testimonial() {
+interface Entry {
+  name: string;
+  avatar: string;
+  message: string;
+  note: number;
+}
+
+export function Testimonial({ name, avatar, message, note }: Entry) {
   return (
     <div className="flex-1 bg-primary-400 h-full flex items-center justify-center p-8 overflow-auto">
       <div className="max-w-md w-full bg-linear-to-br from-purple-600 to-blue-500 rounded-2xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
@@ -62,7 +69,9 @@ export function Testimonial() {
               className="w-12 h-12 rounded-full border-2 border-white"
             />
             <div>
-              <p className="text-white font-semibold">Sarah Johnson</p>
+              <p className="text-white font-semibold">
+                {name || "Sarah Johnson"}
+              </p>
               <p className="text-blue-200 text-sm">UX Designer</p>
             </div>
           </div>

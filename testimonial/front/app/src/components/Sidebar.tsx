@@ -1,11 +1,31 @@
 import { Star } from "lucide-react";
 import ButtonDropDown from "./ButtonDropdown";
-
-export function SideBar() {
+import { useEffect, type Dispatch, type SetStateAction } from "react";
+interface Entry {
+  name: string;
+  setName: Dispatch<SetStateAction<string>>;
+  avatar: string;
+  setAvatar: Dispatch<SetStateAction<string>>;
+  message: string;
+  setMessage: Dispatch<SetStateAction<string>>;
+  note: number;
+  setNote: Dispatch<SetStateAction<number>>;
+}
+export function SideBar({
+  name,
+  setName,
+  avatar,
+  setAvatar,
+  message,
+  setMessage,
+  note,
+  setNote
+}: Entry) {
   return (
     <aside className="w-96 flex flex-col gap-4 py-8 px-6 bg-white border-r border-gray-100 h-screen shrink-0 overflow-y-auto">
       <div>
         <h1 className="text-sm font-bold text-primary-950">
+          {name}
           Social Design Suite
         </h1>
         <p className="text-xs text-gray-500">Génerateur de testimonial</p>
@@ -74,7 +94,7 @@ export function SideBar() {
             id="message"
             name="message"
             rows={3}
-            placeholder="img.com"
+            placeholder="Lorem ipsum"
             className="w-full py-1.5 px-3 text-sm text-gray-900 focus:outline-none rounded-md resize-none"
           />
         </div>
