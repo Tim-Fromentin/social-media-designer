@@ -14,13 +14,13 @@ export function Testimonial({ name, avatar, message, note }: Entry) {
         <div className="p-6 sm:p-8">
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center space-x-2">
-              {[...Array(note).keys()].map((index) => (
+              {[...Array(note || 0).keys()].map((index) => (
                 <Star
                   key={index}
                   className="w-5 h-5 fill-amber-400 text-amber-400"
                 />
               ))}
-              {[...Array(5 - note).keys()].map((index) => (
+              {[...Array(5 - (note || 0)).keys()].map((index) => (
                 <Star key={index} className="w-5 h-5 fill-white text-white" />
               ))}
             </div>
