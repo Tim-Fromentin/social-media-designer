@@ -1,6 +1,5 @@
-import { Star } from "lucide-react";
 import ButtonDropDown from "./ButtonDropdown";
-import { useEffect, type Dispatch, type SetStateAction } from "react";
+import { type Dispatch, type SetStateAction } from "react";
 interface Entry {
   name: string;
   setName: Dispatch<SetStateAction<string>>;
@@ -10,6 +9,8 @@ interface Entry {
   setMessage: Dispatch<SetStateAction<string>>;
   note: number;
   setNote: Dispatch<SetStateAction<number>>;
+  slideIndex: number;
+  setSlideIndex: Dispatch<SetStateAction<number>>;
 }
 export function SideBar({
   name,
@@ -20,6 +21,7 @@ export function SideBar({
   setMessage,
   note,
   setNote,
+  slideIndex,
 }: Entry) {
   return (
     <aside className="w-96 flex flex-col gap-4 py-8 px-6 bg-white border-r border-gray-100 h-screen shrink-0 overflow-y-auto">
@@ -111,7 +113,13 @@ export function SideBar({
         </div>
       </div>
 
-      <ButtonDropDown />
+      <ButtonDropDown
+        name={name}
+        avatar={avatar}
+        message={message}
+        note={note}
+        slideIndex={slideIndex}
+      />
     </aside>
   );
 }
