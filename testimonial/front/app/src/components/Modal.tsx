@@ -5,8 +5,16 @@ interface Modal {
   open: boolean;
   setOpen: (arg0: boolean) => void;
   sliders: any;
+  slideIndex: number;
+  setSlideIndex: (arg0: number) => void;
 }
-export default function Modal({ open, setOpen, sliders }: Modal) {
+export default function Modal({
+  open,
+  setOpen,
+  sliders,
+  slideIndex,
+  setSlideIndex,
+}: Modal) {
   return (
     <div>
       <Dialog open={open} onClose={setOpen} className="relative z-10">
@@ -22,7 +30,12 @@ export default function Modal({ open, setOpen, sliders }: Modal) {
               className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out sm:my-8 sm:w-full sm:max-w-7xl data-closed:sm:translate-y-0 data-closed:sm:scale-95"
             >
               <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <Slider sliders={sliders} />
+                <Slider
+                  sliders={sliders}
+                  slideIndex={slideIndex}
+                  setSlideIndex={setSlideIndex}
+                  setOpen={setOpen}
+                />
               </div>
               <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                 <button

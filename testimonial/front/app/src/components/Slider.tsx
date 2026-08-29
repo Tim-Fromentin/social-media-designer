@@ -2,7 +2,10 @@ import SliderModule from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import JsxParser from "react-jsx-parser";
+
+const StarIcon = (props: any) => <Star {...props} />;
 
 const Slider = (SliderModule as any).default || SliderModule;
 export interface SliderItem {
@@ -12,6 +15,9 @@ export interface SliderItem {
 
 interface SimpleSliderProps {
   sliders: SliderItem[];
+  slideIndex: number;
+  setSlideIndex: (arg0: number) => void;
+  setOpen: (arg0: boolean) => void;
 }
 
 function SamplePrevArrow(props: any) {
@@ -38,7 +44,12 @@ function SampleNextArrow(props: any) {
   );
 }
 
-function SimpleSlider({ sliders = [] }: SimpleSliderProps) {
+function SimpleSlider({
+  sliders = [],
+  slideIndex,
+  setSlideIndex,
+  setOpen,
+}: SimpleSliderProps) {
   const settings = {
     dots: true,
     infinite: sliders.length > 1,
@@ -55,9 +66,18 @@ function SimpleSlider({ sliders = [] }: SimpleSliderProps) {
       <Slider {...settings}>
         {sliders.map((item, index) => (
           <div key={item.name || index}>
-            <div className="h-full min-h-80 w-full bg-indigo-600 rounded-lg p-7 flex! justify-center items-center">
-              {item.code}
+            <div className="h-100 w-full bg-indigo-600 rounded-lg p-7 flex! justify-center items-center">
+              <JsxParser components={{ Star: StarIcon }} jsx={item.code} />
             </div>
+            <button
+              type="button"
+              className="relative mx-auto my-5 flex items-center gap-2 text-white bg-primary-900 rounded-lg box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none cursor-pointer"
+              onClick={() => {
+                (setSlideIndex(index), setOpen(false));
+              }}
+            >
+              Choisir ce design
+            </button>
           </div>
         ))}
       </Slider>

@@ -1,6 +1,7 @@
 import { Plus, Star } from "lucide-react";
 import Modal from "./Modal";
 import { useState } from "react";
+import JsxParser from "react-jsx-parser";
 
 interface Entry {
   name: string;
@@ -10,38 +11,81 @@ interface Entry {
 }
 
 export function Testimonial({ name, avatar, message, note }: Entry) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState<boolean>(true);
+  const [slideIndex, setSlideIndex] = useState<number>(0);
 
   const sliders = [
     {
       name: "1",
-      code: `      <div className="max-w-md w-full bg-white rounded-sm p-4">
-        <div className="flex items-center space-x-2 mb-5">
-          {[...Array(note || 0).keys()].map((index) => (
-            <Star
-              key={index}
-              className="w-5 h-5 fill-amber-400 text-amber-400"
-            />
-          ))}
-          {[...Array(5 - (note || 0)).keys()].map((index) => (
-            <Star key={index} className="w-5 h-5 fill-gray-300 text-gray-300" />
-          ))}
-        </div>
-        <p>{message}</p>
+      code: `
+        <div className="max-w-md w-full bg-white rounded-sm p-4">
+          <div className="flex items-center space-x-2 mb-5">
+            {[0, 1, 2, 3, 4].map((index) => (
+              <Star
+                key={index}
+                className={
+                  index < (note || 0)
+                    ? "w-5 h-5 fill-amber-400 text-amber-400"
+                    : "w-5 h-5 fill-gray-300 text-gray-300"
+                }
+              />
+            ))}
+          </div>
 
-        <div className="flex items-center gap-2 mt-5">
-          <img
-            src={avatar}
-            alt={avatar}
-            className="w-12 h-12 rounded-full border-2 border-white"
-          />
-          <p className="text-gray-500 font-semibold">
-            {name || "Sarah Johnson"}
-          </p>
+          <p>{message || "Lorem ipsum dolor sit amet. Qui doloribus praesentium ex velit atque non unde facilis non asperiores dolor. Qui harum placeat et cumque quisquam quo perferendis soluta cum nihil suscipit."}</p>
+
+          <div className="flex items-center gap-2 mt-5">
+            <img
+              src={avatar || "https://randomuser.me/api/portraits/women/91.jpg"}
+              alt={name || "Avatar"}
+              className="w-12 h-12 rounded-full border-2 border-white"
+            />
+            <p className="text-gray-500 font-semibold">
+              {name || "Sarah Johnson"}
+            </p>
+          </div>
+        </div>
+      `,
+    },
+    {
+      name: "2",
+      code: `<div className="max-w-md w-full bg-linear-to-br from-purple-600 to-blue-500 rounded-2xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+        <div className="p-6 sm:p-8">
+          <div className="flex justify-between items-center mb-4">
+            <div className="flex items-center space-x-2">
+                         {[0, 1, 2, 3, 4].map((index) => (
+              <Star
+                key={index}
+                className={
+                  index < (note || 0)
+                    ? "w-5 h-5 fill-amber-400 text-amber-400"
+                    : "w-5 h-5 fill-gray-300 text-gray-300"
+                }
+              />
+            ))}
+            </div>
+          </div>
+          <blockquote className="text-white text-xl font-medium mb-6">
+            {message || "Lorem ipsum dolor sit amet. Qui doloribus praesentium ex velit atque non unde facilis non asperiores dolor. Qui harum placeat et cumque quisquam quo perferendis soluta cum nihil suscipit."}
+          </blockquote>
+          <div className="flex items-center space-x-4">
+            <img
+             src={avatar || "https://randomuser.me/api/portraits/women/91.jpg"}
+              alt={name || "Avatar"}
+              className="w-12 h-12 rounded-full border-2 border-white"
+            />
+            <div>
+              <p className="text-white font-semibold">
+                {name || "Sarah Johnson"}
+              </p>
+            </div>
+          </div>
         </div>
       </div>`,
     },
   ];
+
+  const StarIcon = (props: any) => <Star {...props} />;
 
   return (
     <div className="flex-1 bg-primary-400 h-full relative flex items-center justify-center p-8 overflow-auto">
@@ -52,65 +96,12 @@ export function Testimonial({ name, avatar, message, note }: Entry) {
           <span className="relative inline-flex size-3 rounded-full bg-primary-500"></span>
         </span>
       </div>
-      {/* <div className="max-w-md w-full bg-linear-to-br from-purple-600 to-blue-500 rounded-2xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
-        <div className="p-6 sm:p-8">
-          <div className="flex justify-between items-center mb-4">
-            <div className="flex items-center space-x-2">
-              {[...Array(note || 0).keys()].map((index) => (
-                <Star
-                  key={index}
-                  className="w-5 h-5 fill-amber-400 text-amber-400"
-                />
-              ))}
-              {[...Array(5 - (note || 0)).keys()].map((index) => (
-                <Star key={index} className="w-5 h-5 fill-white text-white" />
-              ))}
-            </div>
-          </div>
-          <blockquote className="text-white text-xl font-medium mb-6">
-            {message}
-          </blockquote>
-          <div className="flex items-center space-x-4">
-            <img
-              src={avatar}
-              alt="User avatar"
-              className="w-12 h-12 rounded-full border-2 border-white"
-            />
-            <div>
-              <p className="text-white font-semibold">
-                {name || "Sarah Johnson"}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div> */}
 
-      <div className="max-w-md w-full bg-white rounded-sm p-4">
-        <div className="flex items-center space-x-2 mb-5">
-          {[...Array(note || 0).keys()].map((index) => (
-            <Star
-              key={index}
-              className="w-5 h-5 fill-amber-400 text-amber-400"
-            />
-          ))}
-          {[...Array(5 - (note || 0)).keys()].map((index) => (
-            <Star key={index} className="w-5 h-5 fill-gray-300 text-gray-300" />
-          ))}
-        </div>
-        <p>{message}</p>
-
-        <div className="flex items-center gap-2 mt-5">
-          <img
-            src={avatar}
-            alt={avatar}
-            className="w-12 h-12 rounded-full border-2 border-white"
-          />
-          <p className="text-gray-500 font-semibold">
-            {name || "Sarah Johnson"}
-          </p>
-        </div>
-      </div>
-
+      <JsxParser
+        components={{ Star: StarIcon }}
+        jsx={sliders[slideIndex].code}
+        bindings={{ name, avatar, message, note }}
+      />
 
       <button
         type="button"
@@ -121,7 +112,13 @@ export function Testimonial({ name, avatar, message, note }: Entry) {
         <Plus className="h-4 w-4" />
       </button>
 
-      <Modal open={open} setOpen={setOpen} sliders={sliders} />
+      <Modal
+        open={open}
+        setOpen={setOpen}
+        sliders={sliders}
+        slideIndex={slideIndex}
+        setSlideIndex={setSlideIndex}
+      />
     </div>
   );
 }
