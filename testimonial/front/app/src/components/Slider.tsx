@@ -8,6 +8,7 @@ import JsxParser from "react-jsx-parser";
 const StarIcon = (props: any) => <Star {...props} />;
 
 const Slider = (SliderModule as any).default || SliderModule;
+
 export interface SliderItem {
   name: string;
   code: string;
@@ -46,7 +47,6 @@ function SampleNextArrow(props: any) {
 
 function SimpleSlider({
   sliders = [],
-  slideIndex,
   setSlideIndex,
   setOpen,
 }: SimpleSliderProps) {
@@ -61,8 +61,13 @@ function SimpleSlider({
     prevArrow: <SamplePrevArrow />,
   };
 
+  const handleSelect = (index: number) => {
+    setSlideIndex(index);
+    setOpen(false);
+  };
+
   return (
-    <div className="slider-container relative px-10 max-w-2xl mx-auto">
+    <div className="slider-container relative px-10 w-full mx-auto">
       <Slider {...settings}>
         {sliders.map((item, index) => (
           <div key={item.name || index}>
@@ -72,9 +77,7 @@ function SimpleSlider({
             <button
               type="button"
               className="relative mx-auto my-5 flex items-center gap-2 text-white bg-primary-900 rounded-lg box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none cursor-pointer"
-              onClick={() => {
-                (setSlideIndex(index), setOpen(false));
-              }}
+              onClick={() => handleSelect(index)}
             >
               Choisir ce design
             </button>
