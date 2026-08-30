@@ -1,3 +1,4 @@
+import { ExternalLink } from "lucide-react";
 import ButtonDropDown from "./ButtonDropdown";
 import { type Dispatch, type SetStateAction } from "react";
 interface Entry {
@@ -120,6 +121,10 @@ export function SideBar({
         note={note}
         slideIndex={slideIndex}
       />
+
+      <a href="https://unsplash.com/fr/photos/homme-portant-un-gilet-marron-et-une-chemise-blanche-qwoL5kzl76g" className="mt-3 text-primary-400 flex items-center gap-2">
+        Image d'avatar <ExternalLink className="h-4 w-4" />
+      </a>
     </aside>
   );
 }

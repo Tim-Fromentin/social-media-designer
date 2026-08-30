@@ -83,41 +83,6 @@ function SimpleSlider({
             </button>
           </div>
         ))}
-
-        <div>
-          <div className="h-100 w-full bg-indigo-600 rounded-lg p-7 flex! justify-center items-center">
-            <div className="max-w-lg w-full h-52 bg-white rounded-sm p-4 relative overflow-hidden">
-              <img
-                src="https://img.magnific.com/free-photo/attractive-blond-male-dressed-suit-dark-grey-background_613910-14130.jpg?semt=ais_hybrid&w=740&q=80"
-                className="absolute inset-0 w-[30%] rounded-sm h-full object-cover"
-                alt="Portrait"
-              />
-
-              <div className="pl-[35%] flex flex-col gap-3 justify-between h-full">
-                <div className="">
-                  <div className="flex gap-1 mb-3">
-                    <Star className={"w-4 h-4 fill-amber-400 text-amber-400"} />
-                    <Star className={"w-4 h-4 fill-amber-400 text-amber-400"} />
-                    <Star className={"w-4 h-4 fill-amber-400 text-amber-400"} />
-                    <Star className={"w-4 h-4 fill-amber-400 text-amber-400"} />
-                    <Star className={"w-4 h-4 fill-amber-400 text-amber-400"} />
-                  </div>
-                  <p className="text-zinc-900">"Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Recusandae pariatur enim perspiciatis minima dignissimos
-                    nobis."
-                  </p>
-                </div>
-                <p className="text-gray-500 font-semibold">John Doe</p>
-              </div>
-            </div>
-          </div>
-          <button
-            type="button"
-            className="relative mx-auto my-5 flex items-center gap-2 text-white bg-primary-900 rounded-lg box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none cursor-pointer"
-          >
-            Choisir ce design
-          </button>
-        </div>
       </Slider>
     </div>
   );

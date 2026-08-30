@@ -17,7 +17,7 @@ export const sliders = [
             ))}
           </div>
 
-          <p>{message || "Lorem ipsum dolor sit amet. Qui doloribus praesentium ex velit atque non unde facilis non asperiores dolor. Qui harum placeat et cumque quisquam quo perferendis soluta cum nihil suscipit."}</p>
+          <p className="max-w-100 wrap-break-word">{message || "Lorem ipsum dolor sit amet. Qui doloribus praesentium ex velit atque non unde facilis non asperiores dolor. Qui harum placeat et cumque quisquam quo perferendis soluta cum nihil suscipit."}</p>
 
           <div className="flex items-center gap-2 mt-5">
             <img
@@ -36,42 +36,40 @@ export const sliders = [
   {
     name: "modern testimonial",
     code: `
-      <div className="max-w-lg w-full min-h-[220px] bg-white rounded-2xl  border border-slate-100 relative overflow-hidden flex flex-col sm:flex-row justify-between">
-  <div className="flex-1 p-6 flex flex-col justify-between z-10">
-    <div className="space-y-3">
-      <div className="flex gap-1">
-        {[0, 1, 2, 3, 4].map((index) => (
-          <Star
-            key={index}
-            className={
-              index < (note || 0)
-                ? "w-4 h-4 fill-amber-400 text-amber-400"
-                : "w-4 h-4 fill-slate-200 text-slate-200"
-            }
-          />
-        ))}
-      </div>
-      <blockquote className="text-slate-600 text-sm leading-relaxed italic line-clamp-4">
-        « {message || "Lorem ipsum dolor sit amet. Qui doloribus praesentium ex velit atque non unde facilis non asperiores dolor."} »
-      </blockquote>
+ <div className="max-w-lg w-full min-h-50 bg-white rounded-2xl border border-slate-100 relative overflow-hidden flex flex-col justify-between p-6 pr-[38%]">
+  <div className="space-y-3 z-10 w-full min-w-150">
+    <div className="flex gap-1">
+      {[0, 1, 2, 3, 4].map((index) => (
+        <Star
+          key={index}
+          className={
+            index < (note || 0)
+              ? "w-4 h-4 fill-amber-400 text-amber-400"
+              : "w-4 h-4 fill-slate-200 text-slate-200"
+          }
+        />
+      ))}
     </div>
-
-    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
-      <span className="text-slate-900 font-bold text-sm">
-        {name || "John Doe"}
-      </span>
-      <span className="text-xs text-slate-400 font-medium">Avis vérifié</span>
-    </div>
+    <blockquote className="text-slate-600 text-sm leading-relaxed italic line-clamp-4 max-w-70 wrap-break-word">
+      «{message || "Lorem ipsum dolor sit amet."}»
+    </blockquote>
   </div>
 
-  <div className="w-full sm:w-[35%] min-h-[180px] sm:min-h-full relative shrink-0">
-    <img
-      src={avatar || "https://images.unsplash.com/photo-1756806885486-e289ac412b9c?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
-      crossOrigin="anonymous"
-      alt={name || "Avatar"}
-      className="absolute inset-0 w-full h-full object-cover"
-    />
+  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2 z-10 w-full">
+    <span className="text-slate-900 font-bold text-sm truncate">
+      {name || "John Doe"}
+    </span>
+    <span className="text-xs text-slate-400 font-medium whitespace-nowrap">
+      Avis vérifié
+    </span>
   </div>
+
+  <img
+    src={avatar || "https://images.unsplash.com/photo-1756806885486-e289ac412b9c?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
+    crossOrigin="anonymous"
+    alt={name || "Avatar"}
+    className="absolute top-0 right-0 bottom-0 w-[35%] h-full object-cover"
+  />
 </div>
     `,
   },

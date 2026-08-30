@@ -3,6 +3,8 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useRef } from "react";
 import { Card } from "./Card";
 import { domToPng } from "modern-screenshot";
+import { renderToStaticMarkup, renderToString } from "react-dom/server";
+import { sliders } from "../types/sliders";
 
 interface Entry {
   name: string;
@@ -12,28 +14,34 @@ interface Entry {
   slideIndex: number;
 }
 
-export default function ButtonDropDown({ name, avatar, message, note, slideIndex }: Entry) {
+export default function ButtonDropDown({
+  name,
+  avatar,
+  message,
+  note,
+  slideIndex,
+}: Entry) {
   const cardRef = useRef<HTMLDivElement>(null);
 
-const handleExport = async () => {
-  if (!cardRef.current) return;
+  const handleExport = async () => {
+    if (!cardRef.current) return;
 
-  try {
-    const dataUrl = await domToPng(cardRef.current, {
-      scale: 2, 
-      fetch: {
-        bypassingCache: true,
-      },
-    });
+    try {
+      const dataUrl = await domToPng(cardRef.current, {
+        scale: 2,
+        fetch: {
+          bypassingCache: true,
+        },
+      });
 
-    const link = document.createElement('a');
-    link.download = 'testimonial.png';
-    link.href = dataUrl;
-    link.click();
-  } catch (err) {
-    console.error("Erreur d'export :", err);
-  }
-};
+      const link = document.createElement("a");
+      link.download = "testimonial.png";
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error("Erreur d'export :", err);
+    }
+  };
 
   return (
     <Menu as="div" className="relative">
@@ -45,8 +53,17 @@ const handleExport = async () => {
         />
       </MenuButton>
 
-      <div className="absolute left-[-9999px] top-0 pointer-events-none" ref={cardRef}>
-        <Card name={name} avatar={avatar} message={message} note={note} slideIndex={slideIndex} />
+      <div
+        className="absolute left-[-9999px] top-0 pointer-events-none"
+        ref={cardRef}
+      >
+        <Card
+          name={name}
+          avatar={avatar}
+          message={message}
+          note={note}
+          slideIndex={slideIndex}
+        />
       </div>
 
       <MenuItems
@@ -56,7 +73,7 @@ const handleExport = async () => {
         <div className="py-1">
           <MenuItem>
             <button
-              className="block w-full text-left px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+              className="block w-full text-left px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden cursor-pointer"
               onClick={handleExport}
             >
               Images
@@ -65,12 +82,24 @@ const handleExport = async () => {
         </div>
         <div className="py-1">
           <MenuItem>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+            <button
+              className="block w-full text-left px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden cursor-pointer"
+              onClick={() =>
+                navigator.clipboard.writeText(
+                  renderToString(
+                    <Card
+                      name={name}
+                      avatar={avatar}
+                      message={message}
+                      note={note}
+                      slideIndex={slideIndex}
+                    />,
+                  ),
+                )
+              }
             >
-              React / Tailwind
-            </a>
+              HTML / Tailwind
+            </button>
           </MenuItem>
         </div>
       </MenuItems>
