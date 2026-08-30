@@ -3,8 +3,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useRef } from "react";
 import { Card } from "./Card";
 import { domToPng } from "modern-screenshot";
-import { renderToStaticMarkup, renderToString } from "react-dom/server";
-import { sliders } from "../types/sliders";
+import { renderToString } from "react-dom/server";
 
 interface Entry {
   name: string;
