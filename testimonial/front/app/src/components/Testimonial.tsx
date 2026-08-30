@@ -46,7 +46,7 @@ export function Testimonial({
         className="flex items-center gap-2 absolute bottom-6.25 right-6.25 text-white bg-primary-900 rounded-full box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none cursor-pointer"
         onClick={() => setOpen(true)}
       >
-        Ajoutez design
+        Changez de design
         <Plus className="h-4 w-4" />
       </button>
 

@@ -2,6 +2,7 @@
 
 Un outil open source rapide et intuitif qui permet aux créateurs de contenu, indépendants et développeurs de convertir leurs avis clients en visuels élégants et prêts à être partagés sur les réseaux sociaux (LinkedIn, Twitter, Instagram).
 
+### Tester le [Social Media Designer](https://social-media-designer.vercel.app/)
 
 ---
 
